@@ -1,0 +1,152 @@
+<html>
+<head>
+
+<title>jQuery JS CSS HTML</title>
+
+<link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery-ui/jquery-ui.js"></script>
+
+
+<style type="text/css">
+*{
+ margin:0;
+ padding: 0;
+}
+
+body {
+
+  font-family: sans-serif;
+}
+
+.grid{
+ width:50%;
+ float:left;
+ padding:50px 30px;
+ -webkit-box-sizing: border-box;
+ 
+}
+
+.container{
+  
+  background-color:dimgray;
+}
+
+.jscontainer{
+ width:45%;
+ float:left;
+ padding:50px 30px;
+ background-color:dimgray;
+ 
+}
+.output{
+ 
+ border-left: 1px solid dimgray;
+ float:left;
+ height:400px;
+ width:49.6%;
+ -webkit-box-sizing: border-box;
+}
+
+textarea{
+ width:100%;
+ height:200px;
+ margin-top:20px;
+ margin-bottom:50px;
+}
+
+iframe{
+  width:570px;
+  height:200px;
+  border:none;
+  margin:0px 30px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+ 
+  <div class="container grid">
+   <form>
+   <h2>HTML</h2>
+   <textarea id="html"></textarea>
+
+   <h2>CSS</h2>
+   <textarea id="CSS"></textarea>
+   </form>
+
+
+  </div>
+   <div class="jscontainer">
+   <form>
+   <h2>JavaScript</h2>
+   <textarea id="JS"></textarea>
+  </form>
+   </div>
+   
+   <div class="output">
+     <form>
+     <iframe></iframe>
+    </form>
+   </div>
+    
+
+<script type="text/javascript">
+
+(function(){
+  $('.grid').height($(window).height());
+  $('iframe').scroll();
+  var frame = $('iframe');
+      contents = frame.contents();
+      body = contents.find('body');
+      styleTag = contents
+            .find('head')
+            .append('<style></style>')
+            .children('style');
+      scriptTag = contents
+                  .find('head')
+                  .append('<script><\/script>')
+                  .children('script');      
+  $('textarea').focus(function(){
+   var $this = $(this);
+   
+   $this.keyup(function(){
+     if($this.attr('id') === 'html'){
+       body.html($this.val());
+     };
+     if($this.attr('id') === 'CSS'){
+       styleTag.text($this.val());
+     };
+     if($this.attr('id') === 'JS'){
+       scriptTag.text($this.val());
+     };
+   });
+  
+     
+
+
+  });
+
+}) ();
+
+   
+ 
+</script>
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+</html>
